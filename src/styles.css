@@ -1,0 +1,76 @@
+body {
+font-family: "Gill Sans Extrabold", Helvetica, sans-serif;
+-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+margin: 0; padding: 0; background: #f7f7f7;
+}
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+  #v-views {
+    background: #222;
+    min-height: 80vh;
+  }
+#app, #page {
+    background: #222;
+    color: #CCC;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+#c-header {
+}
+#c-header #nav {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+}
+#c-header #nav li{
+}
+#c-header #nav a {
+    padding: 4px 12px;
+
+    margin: 1px;
+    font-size: 1.2em;
+}
+#c-header #nav a:hover {background: #111;}
+#c-header #nav a.router-link-active{
+    background: #000;
+ }
+#app-brand { display: flex; }
+#app-logo { width: 10em; height: auto; margin: 1em 0 0; }
+.maxW1300 { max-width: 1200px; }
+.maxW1200 { max-width: 1200px; }
+.maxW800  { max-width: 1200px; }
+.maxW960  { max-width: 960px; }
+ul { list-style: none; padding: 0; }
+pre { font-size: 12px; color: #666; padding: 1em;}
+input, textarea, .select select {
+    border: 1px solid #e0e0e0;
+}
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    color: #fbfbfb;
+}
+h3 {font-size: 1.2em; margin: 0; padding: 0.6em 0 0; }
+a { color: #fff; }
+.comp { padding: 1em; }
+
+#c-footer {
+    position: absolute;
+    background: #000;
+    width: 100%;
+}
+
+@media (min-width: 56.25em) {
+
+
+}
+@media (min-width: 75em) {
+
+}
