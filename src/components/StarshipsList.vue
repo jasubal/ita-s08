@@ -41,6 +41,7 @@ methods: {
 <div id="c-liststarships" class="view flex two center">
 
 <ul>
+     <p>{{$store.state.msg}}</p>
 <li v-for="(starship, idx) in starships" v-bind:key="idx">
 
     <div class="nau" @click="getStarshipData(idx)">
@@ -62,7 +63,7 @@ methods: {
 
 
 <style scoped>
-ul { display: flex; flex-direction: column; max-width: 480px; }
+ul { display: flex; flex-direction: column; max-width: 600px; }
 ul li { display: flex; margin: 2px; align-items: center; }
 ul li a, .nau{ background: #484848; padding: 10px; text-align: left; width: 100%; display: flex; flex-direction: column; text-transform: uppercase; }
 ul li a:hover, .nau:hover { background: #000; }

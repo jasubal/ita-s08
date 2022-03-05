@@ -20,7 +20,4 @@ export default {
 </template>
 
 <style>
-#v-views {
-  min-height: 60vh;
-}
 </style>

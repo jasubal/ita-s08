@@ -15,7 +15,6 @@ export default {
 
 <template>
   <div id="starshipsList" class="view">
-    <h1>Starships page</h1>
     <StarshipsList />
   </div>
 </template>
