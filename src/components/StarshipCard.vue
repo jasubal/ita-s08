@@ -1,42 +1,40 @@
 <script>
-
+import { mapState } from "vuex";
 export default {
     name: "StarshipCard",
+    props: ["shipID"],
     data() {
         return {
             starshipCard: {},
             starshipUrl: "",
             starshipId: "",
-            placeholderUrl: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+            //placeholderUrl: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
 
             }
-        },
-props: {
-        starship:Object
-    },
-created() {
+},
 
+created() {
+  //this.$store.dispatch("GET_SHIP", this.shipID);
 },
 watch: {
-        starship: function() {
-        this.renderStarship();
+    shipID: function() {
+    console.log(this.shipID)
+    //this.$store.dispatch("GET_SHIP", this.shipID);
+    this.renderStarship();
 
         },
     },
-    created() {
-        this.renderStarship();
-     },
 methods: {
     renderStarship() {
         this.starshipCard = this.starship;
         this.starshipUrl = this.starship.url;
-        this.starshipId = this.starshipUrl.split("starships/").pop().slice(0, -1);
+        this.starshipId = this.shipID;
         let imgUrl = "https://starwars-visualguide.com/assets/img/starships/" + this.starshipId + ".jpg";
         let output = '';
         let s = this.starshipCard;
         output ="<div class='starship'>"+
         '<h1>'+s.name+'</h1>'+
-        '<img id="shipImg" src="'+imgUrl+'" @error="setErrorImg">'+
+        '<div id="imagWrapper"><img id="shipImg" src="'+imgUrl+'" @error="setErrorImg"></div>'+
         '<ul class="flex center one two-600">'+
         '<li>Model: <BR>'+s.model+'</li>'+
         '<li>Manufacturer: <BR>'+s.manufacturer+'</li>'+
@@ -54,13 +52,14 @@ methods: {
         // renderStarship
 setAltImg(event) {
         // evento que asigna ruta a etiqueta img de html
-        event.target.src = this.placeholderUrl;
+        //event.target.src = this.placeholderUrl;
       },
 
 
     },
-
     computed: {
+    ...mapState(["starship"]),
+
 
 },
 
@@ -86,6 +85,7 @@ setAltImg(event) {
     position: sticky;
     top: 0;
     }
+
 
 }
 </style>

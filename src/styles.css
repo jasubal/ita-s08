@@ -60,12 +60,23 @@ h1, h2, h3, h4, h5, h6 {
 h3 {font-size: 1.2em; margin: 0; padding: 0.6em 0 0; }
 a { color: #fff; }
 .comp { padding: 1em; }
-#shipImg {
+
+#c-starship #imagWrapper {
+    margin: 0;
+    width: 100%;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    justify-content: center;
+}
+#c-starship #shipImg {
     width: 100%;
     max-width: 300px;
     height: auto;
     }
-   #c-starship li {
+#c-starship li {
         text-align: left;
     }
 #c-footer { position: fixed; bottom: 0; background: #000; width: 100%; }
