@@ -1,6 +1,7 @@
 <script>
+import { mapState } from 'vuex'
+// import { mapMutations } from 'vuex'
 import StarshipCard from "../components/StarshipCard.vue";
-
 
 export default {
    name: "StarshipsList",
@@ -9,6 +10,7 @@ export default {
         return {
             starships:[],
             starship: {},
+            showcard: false,
      }
     },
     created() {
@@ -26,10 +28,18 @@ methods: {
         return str.replace(/\s/g, '-');
     },
     getStarshipData(idx) {
+    this.showcard = true;
+    //console.log("getStarshipData idx="+idx);
     //console.log(this.starships[idx]);
     this.starship = this.starships[idx];
         }
-    }
+    },
+    watch: {
+
+    },
+    computed: {
+  ...mapState(['MSG','SHOWCARD']),
+},
 }
 
 // TODO:
@@ -38,10 +48,10 @@ methods: {
 </script>
 
 <template>
-<div id="c-liststarships" class="view flex two center">
+<div id="c-liststarships" class="view flex one two-800 center">
 
 <ul>
-     <p>{{$store.state.msg}}</p>
+<p>{{MSG}}</p>
 <li v-for="(starship, idx) in starships" v-bind:key="idx">
 
     <div class="nau" @click="getStarshipData(idx)">
@@ -53,17 +63,24 @@ methods: {
     </div>
 
 </li>
-</ul>
 
-<StarshipCard :starship="starship" />
+<button >view more</button>
+</ul>
+<div>
+<StarshipCard v-if="showcard" :starship="starship" />
+</div>
 
 
 </div>
 </template>
 
-
 <style scoped>
-ul { display: flex; flex-direction: column; max-width: 600px; }
+ul {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    padding: 0 0 5em;
+    }
 ul li { display: flex; margin: 2px; align-items: center; }
 ul li a, .nau{ background: #484848; padding: 10px; text-align: left; width: 100%; display: flex; flex-direction: column; text-transform: uppercase; }
 ul li a:hover, .nau:hover { background: #000; }

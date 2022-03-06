@@ -2,54 +2,90 @@
 
 export default {
     name: "StarshipCard",
-    props: ["starship"],
     data() {
         return {
             starshipCard: {},
-            name: "",
-            model: "",
-            url: "",
+            starshipUrl: "",
+            starshipId: "",
+            placeholderUrl: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+
             }
         },
-    watch: {
-        starship: function(){
-        this.starshipCard = this.starship;
-        this.name = this.starshipCard.name;
-        this.model = this.starshipCard.model;
-        this.url = this.starshipCard.url;
-        }
+props: {
+        starship:Object
     },
-    computed: {
-        imgUrl(){
-            let id = this.url.split("starships/").pop().slice(0, -1);
-            let url = "https://starwars-visualguide.com/assets/img/starships/" + id + ".jpg";
-            console.log(url);
-            return url;
-        }
+created() {
 
-    }
+},
+watch: {
+        starship: function() {
+        this.renderStarship();
+
+        },
+    },
+    created() {
+        this.renderStarship();
+     },
+methods: {
+    renderStarship() {
+        this.starshipCard = this.starship;
+        this.starshipUrl = this.starship.url;
+        this.starshipId = this.starshipUrl.split("starships/").pop().slice(0, -1);
+        let imgUrl = "https://starwars-visualguide.com/assets/img/starships/" + this.starshipId + ".jpg";
+        let output = '';
+        let s = this.starshipCard;
+        output ="<div class='starship'>"+
+        '<h1>'+s.name+'</h1>'+
+        '<img id="shipImg" src="'+imgUrl+'" @error="setErrorImg">'+
+        '<ul class="flex center one two-600">'+
+        '<li>Model: <BR>'+s.model+'</li>'+
+        '<li>Manufacturer: <BR>'+s.manufacturer+'</li>'+
+        '<li>S Class: <BR>'+s.starship_class+'</li>'+
+        '<li>Hyperdrive Rating: <BR>'+s.hyperdrive_rating+'</li>'+
+        '<li>MGLT: <BR>'+s.MGLT+'</li>'+
+        '<li>Cargo Capacity: <BR>'+s.cargo_capacity+'</li>'+
+        '<li>Consumables: <BR>'+s.consumables+'</li>'+
+        '<li>Cost In Credits: <BR>'+s.cost_in_credits+'</li>'+
+        '</ul>';
+        '</div>';
+        //console.log(output);
+        return output;
+        },
+        // renderStarship
+setAltImg(event) {
+        // evento que asigna ruta a etiqueta img de html
+        event.target.src = this.placeholderUrl;
+      },
+
+
+    },
+
+    computed: {
+
+},
+
 }
 </script>
 
 <template>
-<div v-if="$store.state.msg=='ok'" id="c-starship">
-    <h1>Starship: {{starshipCard.name}}</h1>
-    <p>{{starshipCard.model}}</p>
-    <img v-bind:src="imgUrl" alt="">
-</div>
+<div id="c-starship" v-html="renderStarship()"></div>
 </template>
 
 
 
-
-
-
 <style scoped>
-    #c-starship {
+#c-starship {
     background-color: #303030;
     padding: 20px;
-    max-height: 90vh;
+    }
+@media (min-width: 56.25em) {
+#c-starship {
+    background-color: #303030;
+    padding: 20px;
+    max-height: 100vh;
     position: sticky;
     top: 0;
     }
+
+}
 </style>
