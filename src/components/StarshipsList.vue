@@ -1,5 +1,6 @@
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 // import { mapMutations } from 'vuex'
 import StarshipCard from "../components/StarshipCard.vue";
 
@@ -8,12 +9,18 @@ export default {
    components: { StarshipCard },
     data() {
         return {
+
+            /*
             starships:[],
             starship: {},
+            */
             showcard: false,
      }
     },
     created() {
+    this.$store.dispatch("GET_SHIPS");
+
+/*
     fetch( 'https://swapi.py4e.com/api/starships',
     { method: 'GET', headers: {'Accept': 'application/json'},})
         .then(res => res.json())
@@ -21,24 +28,26 @@ export default {
             this.starships = res.results;
             console.log(this.starships);
         });
+*/
 
 },
 methods: {
-    clearWhitespace(str) {
-        return str.replace(/\s/g, '-');
-    },
+    ...mapState(["starships"]),
+    ...mapGetters(["countShips"]),
+
     getStarshipData(idx) {
     this.showcard = true;
     //console.log("getStarshipData idx="+idx);
     //console.log(this.starships[idx]);
     this.starship = this.starships[idx];
-        }
     },
-    watch: {
+    clearWhitespace(str) {
+        return str.replace(/\s/g, '-');
+    },
+},
 
-    },
-    computed: {
-  ...mapState(['MSG','SHOWCARD']),
+computed: {
+  ...mapState(['MSG','starships']),
 },
 }
 

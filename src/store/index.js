@@ -1,23 +1,38 @@
 import { createStore } from 'vuex'
 
 export default createStore({
+  // poner variables y colecciones aquí
   state: {
     MSG: 'ok',
-  },
-  getters: {
+    starships:[],
+    starship: {},
+
+
   },
   mutations: {
-    VIEW_MORE (state) {
-      state.SHOWCARD = false
-      console.log('view more')
+      // funciones síncronas para cambiar el estado e.j. put, edit, delete
+      LOAD_SHIPS: (state, payload) => (state.starships = payload),
+      LOAD_SHIP: (state, payload) => (state.starship = payload),
+  },
+  actions: {
+   // funciones asíncronas que puede llamar una o más mutaciones
+   GET_SHIPS:(state) => {
+     fetch('https://swapi.py4e.com/api/starships',
+     { method: 'GET', headers: {'Accept': 'application/json'},})
+     .then((res) => {
+        return res.json();
+     })
+     .then((data) => {
+       state.commit('LOAD_SHIPS', data.results)
+       console.log(data.results)
+      });
     },
 
 
-  },
-  actions: {
-
 
   },
-  modules: {
-  }
+  getters: {
+    // pon el equivalente a las propiedades computadas aquí
+    countShips: (state) => state.starships.length,
+  },
 })
