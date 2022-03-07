@@ -1,7 +1,9 @@
 <template>
 <header id="c-header">
     <div id="app-brand" class="flex one center">
- <img id="app-logo"  alt="Vue logo" src="../assets/logo-starwars.png" />
+    <router-link to="/"> <img id="app-logo"  alt="Vue logo" src="../assets/logo-starwars.png" />
+    </router-link>
+
     </div>
     <ul id="nav">
         <li> <router-link to="/">Home</router-link> </li>
@@ -23,7 +25,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-</style>

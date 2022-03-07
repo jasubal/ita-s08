@@ -61,11 +61,9 @@ setAltImg(event) {
         //event.target.src = this.placeholderUrl;
       },
 
-
     },
     computed: {
     ...mapState(["starship"]),
-
 
 },
 
@@ -76,20 +74,9 @@ setAltImg(event) {
 <div id="c-starship" v-html="renderStarship()"></div>
 </template>
 
-
-
 <style scoped>
-#c-starship {
-    background-color: #303030;
-    padding: 20px;
-    }
+#c-starship { background-color: #303030; padding: 20px; }
 @media (min-width: 56.25em) {
-#c-starship {
-    background-color: #303030;
-    padding: 20px;
-    max-height: 100vh;
-    position: sticky;
-    top: 0;
-    }
+#c-starship { background-color: #303030; padding: 20px; max-height: 100vh; position: sticky; top: 0; }
 }
 </style>

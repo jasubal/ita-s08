@@ -15,7 +15,6 @@ export default {
     },
 methods: {
 
-
     getStarshipData(idx,url) {
     console.log(this.starships[idx]);
     this.shipID =  url.split("starships/").pop().slice(0, -1);
@@ -74,38 +73,13 @@ computed: {
 </template>
 
 <style scoped>
-#starshipsList {
-    max-width: 1200px;
-}
-ul {
-    margin-block-start: 0;
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
-    padding: 0 0 5em;
-    }
+#starshipsList { max-width: 1200px; }
+ul { margin-block-start: 0; display: flex; flex-direction: column; max-width: 480px; padding: 0 0 5em; }
 ul li { display: flex; margin: 2px; align-items: center; }
-ul li a, .nau{
-    background: #484848;
-    padding: 10px 2em;
-    text-align: left;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    text-transform: uppercase;
-}
-ul li a:hover, .nau:hover { background: #000; }
+ul li a, .nau{ background: #484848; padding: 10px 2em; text-align: left; width: 100%; display: flex; flex-direction: column; text-transform: uppercase; transition: all 0.1s  }
+ul li a:hover, .nau:hover { background: #000; transition: all 0.5s}
 .nau {cursor: pointer;}
 .nauNom { font-weight: bold; }
-.nauNom[data-v-4d48a13a] {
-    font-weight: bold;
-    color: #ffeb3b;
-}
-.nauIdx[data-v-4d48a13a] {
-    font-weight: normal;
-    position: relative;
-    left: -28px;
-    font-size: 18px;
-    height: 0;
-}
+.nauNom[data-v-4d48a13a] { font-weight: bold; color: #ffeb3b; }
+.nauIdx[data-v-4d48a13a] { font-weight: normal; position: relative; left: -28px; font-size: 12px; height: 0; }
 </style>
