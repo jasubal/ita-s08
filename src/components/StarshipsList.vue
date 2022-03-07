@@ -25,16 +25,21 @@ methods: {
 
     //this.starship = this.starships[idx];
     },
+    addMoreShips() {
+    this.$store.dispatch("ADD_SHIPS",this.nextUrl)
+    },
+
     clearWhitespace(str) {
-        return str.replace(/\s/g, '-');
+        return str.replace(/\s/g, '-')
     },
 },
 created() {
-this.$store.dispatch("GET_SHIPS");
+this.$store.dispatch("GET_SHIPS",1)
 },
 computed: {
     ...mapState(["starships", "starship"]),
-    ...mapGetters(["countShips"]),
+    ...mapGetters(["countShips","currentPage","nextUrl"]),
+
 
 },
 }
@@ -58,7 +63,7 @@ computed: {
 
 </li>
 
-<button >view more</button>
+<button  @click="addMoreShips()">view more</button>
 </ul>
 <div>
 <StarshipCard v-if="showcard" :shipID="shipID" />
