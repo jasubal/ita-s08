@@ -1,10 +1,9 @@
 <template>
-<header id="c-header">
+<header id="c-header" class="center">
     <div id="app-brand" class="flex one center">
-    <router-link to="/"> <img id="app-logo"  alt="Vue logo" src="../assets/logo-starwars.png" />
-    </router-link>
-
+    <router-link id="link-app-logo" to="/"> <img id="app-logo"  alt="Vue logo" src="../assets/logo-starwars.png" /></router-link>
     </div>
+    <div id="user-btns">LOG IN // SIGN UP</div>
     <ul id="nav">
         <li> <router-link to="/">Home</router-link> </li>
         <li> <router-link to="/starships">Starships</router-link> </li>

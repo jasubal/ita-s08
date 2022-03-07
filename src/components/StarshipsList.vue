@@ -11,18 +11,17 @@ export default {
         return {
             showcard: false,
             shipID:'',
+            starship: {},
      }
     },
 methods: {
-
     getStarshipData(idx,url) {
-    console.log(this.starships[idx]);
+    //console.log(this.starships[idx]);
     this.shipID =  url.split("starships/").pop().slice(0, -1);
     this.$store.dispatch("GET_SHIP", this.shipID);
     this.showcard = true;
     //console.log("getStarshipData idx="+idx);
-
-    //this.starship = this.starships[idx];
+    this.starship = this.starships[idx];
     },
     addMoreShips() {
     this.$store.dispatch("ADD_SHIPS",this.nextUrl)
@@ -65,7 +64,7 @@ computed: {
 <button  @click="addMoreShips()">view more</button>
 </ul>
 <div>
-<StarshipCard v-if="showcard" :shipID="shipID" />
+<StarshipCard v-if="showcard" :shipID="shipID" :starship="starship"  />
 </div>
 
 

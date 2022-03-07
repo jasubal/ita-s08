@@ -35,8 +35,8 @@ export default createStore({
      .then((data) => {
        state.commit('LOAD_SHIPS', data.results)
        state.commit('TOTALSHIPS', data.count)
-       state.commit('NEXTSHIPS', data.next)
-       state.commit('PREVSHIPS', data.previous)
+       state.commit('NEXTSHIPS',  data.next)
+       state.commit('PREVSHIPS',  data.previous)
        state.commit('SHIPSLOADED', true)
        //console.log(data.results)
       });
