@@ -49,9 +49,10 @@ computed: {
 
     <div class="nau" @click="getStarshipData(idx,starship.url)">
    <!--  <a v-bind:href="'#/starships/' + clearWhitespace(starship.name)"> -->
+    <span class="nauIdx">   ({{ idx }}) </span>
     <span class="nauNom">   {{ starship.name }}</span>
     <span class="nauModel"> {{ starship.model }}</span>
-    <span class="nauIdx">   {{ idx }}</span>
+
 <!-- </a> -->
     </div>
 
@@ -68,7 +69,11 @@ computed: {
 </template>
 
 <style scoped>
+#starshipsList {
+    max-width: 1200px;
+}
 ul {
+    margin-block-start: 0;
     display: flex;
     flex-direction: column;
     max-width: 600px;
@@ -87,5 +92,15 @@ ul li a, .nau{
 ul li a:hover, .nau:hover { background: #000; }
 .nau {cursor: pointer;}
 .nauNom { font-weight: bold; }
-.nauModel { font-weight: normal; }
+.nauNom[data-v-4d48a13a] {
+    font-weight: bold;
+    color: #ffeb3b;
+}
+.nauIdx[data-v-4d48a13a] {
+    font-weight: normal;
+    position: relative;
+    left: -28px;
+    font-size: 18px;
+    height: 0;
+}
 </style>

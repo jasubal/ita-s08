@@ -13,8 +13,8 @@ export default createStore({
   mutations: {
       // funciones síncronas para cambiar el estado e.j. put, edit, delete
       LOAD_SHIPS: (state, payload) => (state.starships = payload),
-      LOAD_SHIP: (state, payload) => (state.starship = payload),
-      SHIPSLOADED: (state, payload) => (state.starshipsLoaded = payload),
+      LOAD_SHIP:  (state, payload) => (state.starship = payload),
+      SHIPSLOADED:(state, payload) => (state.starshipsLoaded = payload),
       SHIPLOADED: (state, payload) => (state.starshipLoaded = payload),
   },
   actions: {

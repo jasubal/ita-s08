@@ -32,9 +32,8 @@ margin: 0; padding: 0; background: #f7f7f7;
 }
 #c-header #nav li{
 }
-#c-header #nav a {
+#c-header #nav a, #c-header #nav span {
     padding: 4px 12px;
-
     margin: 1px;
     font-size: 1.2em;
 }
@@ -61,14 +60,23 @@ h3 {font-size: 1.2em; margin: 0; padding: 0.6em 0 0; }
 a { color: #fff; }
 .comp { padding: 1em; }
 
+#c-starship header {
+    display: flex;
+    align-items: center;
+}
+#c-starship h1 {
+    font-size: 1.8em;
+    text-transform: uppercase;
+    padding: 10px;
+    color: #ffeb3b;
+}
 #c-starship #imagWrapper {
     margin: 0;
-    width: 100%;
-    height: 240px;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1em;
+    padding: 0;
     justify-content: center;
 }
 #c-starship #shipImg {
@@ -76,10 +84,21 @@ a { color: #fff; }
     max-width: 300px;
     height: auto;
     }
-#c-starship li {
+    #c-starship li {
         text-align: left;
+        background: #222;
+        margin: 2px;
+        padding: 6px;
+    }
+    #c-starship li span{
+        display: block;
     }
 #c-footer { position: fixed; bottom: 0; background: #000; width: 100%; }
+#c-footer p {
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
 
 @media (min-width: 56.25em) {
 

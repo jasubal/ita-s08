@@ -26,6 +26,7 @@ watch: {
     },
 methods: {
     renderStarship() {
+        this.starshipCard = {};
         this.starshipCard = this.starship;
         this.starshipUrl = this.starship.url;
         this.starshipId = this.shipID;
@@ -33,17 +34,22 @@ methods: {
         let output = '';
         let s = this.starshipCard;
         output ="<div class='starship'>"+
+        '<header class="flex center two">'+
         '<h1>'+s.name+'</h1>'+
         '<div id="imagWrapper"><img id="shipImg" src="'+imgUrl+'" @error="setErrorImg"></div>'+
-        '<ul class="flex center one two-600">'+
-        '<li>Model: <BR>'+s.model+'</li>'+
-        '<li>Manufacturer: <BR>'+s.manufacturer+'</li>'+
-        '<li>S Class: <BR>'+s.starship_class+'</li>'+
-        '<li>Hyperdrive Rating: <BR>'+s.hyperdrive_rating+'</li>'+
-        '<li>MGLT: <BR>'+s.MGLT+'</li>'+
-        '<li>Cargo Capacity: <BR>'+s.cargo_capacity+'</li>'+
-        '<li>Consumables: <BR>'+s.consumables+'</li>'+
-        '<li>Cost In Credits: <BR>'+s.cost_in_credits+'</li>'+
+        '</header>'+
+        '<ul class="flex center">'+
+        '<li><span>Model: </span>'+s.model+'</li>'+
+        '<li><span>S Class: </span>'+s.starship_class+'</li>'+
+        '<li><span>Crew: </span>'+s.crew+'</li>'+
+        '<li><span>Passengers: </span>'+s.passengers+'</li>'+
+        '<li><span>Cargo Capacity: </span>'+s.cargo_capacity+'</li>'+
+        '<li><span>Length: </span>'+s.length+'</li>'+
+        '<li><span>Hyperdrive Rating: </span>'+s.hyperdrive_rating+'</li>'+
+        '<li><span>Consumables: </span>'+s.consumables+'</li>'+
+        '<li><span>Cost In Credits: </span>'+s.cost_in_credits+'</li>'+
+        '<li><span>MGLT: </span>'+s.MGLT+'</li>'+
+        '<li><span>Manufacturer: </span>'+s.manufacturer+'</li>'+
         '</ul>';
         '</div>';
         //console.log(output);
@@ -85,7 +91,5 @@ setAltImg(event) {
     position: sticky;
     top: 0;
     }
-
-
 }
 </style>
