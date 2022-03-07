@@ -1,6 +1,14 @@
 import { createStore } from 'vuex'
+import { login } from './login.module';
+import { register } from './register.module';
 
 export default createStore({
+
+  modules: {
+    login: login,
+    register: register
+  },
+
   // poner variables y colecciones aquí
   state: {
     page: 1,
@@ -11,6 +19,7 @@ export default createStore({
     starship: {},
     starshipsLoaded: false,
 
+    user: {}
 
   },
   mutations: {
@@ -25,6 +34,8 @@ export default createStore({
       //
       LOAD_SHIP:   (state, payload) => (state.starship = payload),
       SHIPLOADED:  (state, payload) => (state.starshipLoaded = payload),
+      //
+      SAVE_USER:   (state, payload) => (state.user = payload),
   },
   actions: {
    // funciones asíncronas que puede llamar una o más mutaciones
@@ -56,6 +67,8 @@ export default createStore({
         console.log(data.next)
       });
     },
+
+    //=>this.$store.dispatch("GET_SHIP", this.shipID);
     GET_SHIP:(state, payload) => {
       fetch(`https://swapi.py4e.com/api/starships/${payload}`,
       { method: 'GET', headers: {'Accept': 'application/json'},})
@@ -65,6 +78,12 @@ export default createStore({
         state.commit('SHIPLOADED', true)
         //console.log(data)
       });
+    },
+
+    //=>this.$store.dispatch('REGISTER_USER', data)
+    REGISTER_USER:(state, payload) => {
+      console.log("REGISTER_USER"+payload)
+      state.commit('SAVE_USER', payload)
     }
 
   },
