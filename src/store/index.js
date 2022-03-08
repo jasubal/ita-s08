@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { auth } from './m.auth';
+import { auth  } from './m.auth';
 
 export default createStore({
 
@@ -15,8 +15,7 @@ export default createStore({
     starships:[],
     starship: {},
     starshipsLoaded: false,
-
-
+    showcard: false,
 
   },
   mutations: {
@@ -24,11 +23,13 @@ export default createStore({
       LOAD_SHIPS:  (state, payload) => (state.starships = payload),
       SHIPSLOADED: (state, payload) => (state.starshipsLoaded = payload),
       TOTALSHIPS:  (state, payload) => (state.totalStarships = payload),
+      PAGESHIPS:   (state, payload) => (payload ? state.page++ : state.page),
       NEXTSHIPS:   (state, payload) => (state.next = payload),
       PREVSHIPS:   (state, payload) => (state.previous = payload),
       // load more ships
       MUTATE_SHIPS: (state, payload) => { state.starships.push(...payload) },
       //
+      SHOWCARD:    (state, payload) => (state.showcard = payload),
       LOAD_SHIP:   (state, payload) => (state.starship = payload),
       SHIPLOADED:  (state, payload) => (state.starshipLoaded = payload),
       //
@@ -50,7 +51,7 @@ export default createStore({
       });
     },
 
-    ADD_SHIPS:(state,payload) => {
+    ADD_MORE_SHIPS:(state,payload) => {
       state.commit('SHIPLOADED', false)
       //console.log(payload)
       //fetch(`https://swapi.py4e.com/api/starships/${payload}`,
@@ -59,10 +60,14 @@ export default createStore({
       .then((res) => { return res.json(); })
       .then((data) => {
         state.commit('MUTATE_SHIPS', data.results)
-        state.commit('NEXTSHIPS', data.next)
+        state.commit('PAGESHIPS', data)
+        state.commit('NEXTSHIPS',  data.next)
+        state.commit('PREVSHIPS',  data.previous)
         //console.log(data.results)
-        console.log(data.next)
-      });
+
+
+    });
+
     },
 
     //=>this.$store.dispatch("GET_SHIP", this.shipID);
@@ -76,6 +81,10 @@ export default createStore({
         //console.log(data)
       });
     },
+    SHOWCARD:(state, payload) => {
+      state.commit('SHOWCARD', payload)
+    }
+
 
 
 
@@ -85,5 +94,7 @@ export default createStore({
     countShips:  (state) => state.starships.length,
     currentPage: (state) => state.page,
     nextUrl:     (state) => state.next,
+    cardShowing: (state) => state.showcard,
+
   },
 })

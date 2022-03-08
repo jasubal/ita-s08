@@ -73,9 +73,25 @@ a { color: #fff; }
 
 #c-login, #c-register {
     display: flex;
-    max-width: 400px;
-    background: #0d0d0d;
+    max-width: 480px;
+    background: #181818;
     align-content: flex-start;
+    padding: 2em 3em 0;
+    margin: 2em 0;
+}
+#c-register {
+    max-height: 600px;
+}
+#c-login {
+    max-height: 400px;
+}
+.auth-logo {
+    background-image: url("../src/assets/logo-auth.jpg");
+    height: 60px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 70%;
+    margin: 20px auto;
 }
 .form-group {
     margin: 1em 0;

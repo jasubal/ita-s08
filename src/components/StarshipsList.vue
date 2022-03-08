@@ -9,7 +9,6 @@ export default {
    components: { StarshipCard },
     data() {
         return {
-            showcard: false,
             shipID:'',
             starship: {},
      }
@@ -19,24 +18,35 @@ methods: {
     //console.log(this.starships[idx]);
     this.shipID =  url.split("starships/").pop().slice(0, -1);
     this.$store.dispatch("GET_SHIP", this.shipID);
-    this.showcard = true;
-    //console.log("getStarshipData idx="+idx);
+    this.$store.dispatch("SHOWCARD", true);
+    //this.showcard = true;
     this.starship = this.starships[idx];
     },
     addMoreShips() {
-    this.$store.dispatch("ADD_SHIPS",this.nextUrl)
+    this.$store.dispatch("ADD_MORE_SHIPS",this.nextUrl)
     },
 
     clearWhitespace(str) {
         return str.replace(/\s/g, '-')
     },
+    addRouter(){
+// update router
+// console.log(this.$route.query)
+// this.$router.push({ path: '/starships', query: { page: this.page } })
+    }
 },
 created() {
 this.$store.dispatch("GET_SHIPS",1)
 },
+
+watch: {
+    nextUrl : function(){
+         this.addRouter();
+    }
+},
 computed: {
-    ...mapState(["starships", "starship"]),
-    ...mapGetters(["countShips","currentPage","nextUrl"]),
+    ...mapState(["starships", "starship","starshipsLoaded","totalStarships","next","page"]),
+    ...mapGetters(["countShips","currentPage","nextUrl","countShips"]),
 
 
 },
@@ -60,11 +70,12 @@ computed: {
     </div>
 
 </li>
-
-<button  @click="addMoreShips()">view more</button>
+<li v-if="starshipsLoaded" ><span class="flex center">Loaded {{countShips}} Starships of {{totalStarships}}</span>  </li>
+<button v-if="next"  @click="addMoreShips()">view more</button>
+<li v-else class="flex center">No more ships...</li>
 </ul>
 <div>
-<StarshipCard v-if="showcard" :shipID="shipID" :starship="starship"  />
+<StarshipCard  :shipID="shipID" :starship="starship"  />
 </div>
 
 
@@ -76,6 +87,7 @@ computed: {
 ul { margin-block-start: 0; display: flex; flex-direction: column; max-width: 480px; padding: 0 0 5em; }
 ul li { display: flex; margin: 2px; align-items: center; }
 ul li a, .nau{ background: #484848; padding: 10px 2em; text-align: left; width: 100%; display: flex; flex-direction: column; text-transform: uppercase; transition: all 0.1s  }
+.nau {border-radius: 6px}
 ul li a:hover, .nau:hover { background: #000; transition: all 0.5s}
 .nau {cursor: pointer;}
 .nauNom { font-weight: bold; }

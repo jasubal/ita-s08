@@ -1,6 +1,7 @@
 <template>
- <div id="c-register" class="flex one center">
-    <h1>CREATE YOUR ACCOUNT</h1>
+ <div id="c-register" class="flex one center auth">
+    <div class="auth-logo"></div>
+    <h2>CREATE YOUR ACCOUNT</h2>
     <form @submit.prevent="register">
 
 <div class="form-group">
@@ -15,11 +16,7 @@
 
 <div class="form-group">
           <input id="password" type="password" v-model="password"  placeholder="Your password">
-      </div>
 
-
-<div class="form-group">
-          <input id="password-confirm" type="password" v-model="password_confirmation"  placeholder="Repeat password">
       </div>
 
       <div>
@@ -27,8 +24,7 @@
       </div>
 
       <p>Already have an account?
-           <router-link to="/login">Sign In</router-link>
-
+           <router-link to="/login">Login In</router-link>
       </p>
     </form>
   </div>
@@ -42,8 +38,6 @@
         name : "",
         email : "",
         password : "",
-        password_confirmation : "",
-        is_admin : null
       }
     },
     methods: {
@@ -52,12 +46,15 @@
           name: this.name,
           email: this.email,
           password: this.password,
-       //   is_admin: this.is_admin
         }
         this.$store.dispatch('auth/REGISTER_USER', data)
-       .then(() => this.$router.push('/register'))
+       .then(() => this.$router.push('/starships'))
        .catch(err => console.log(err))
       }
     }
   }
 </script>
+
+<style>
+
+</style>
