@@ -14,12 +14,12 @@
 
 
 <div class="form-group">
-          <input id="password" type="password" v-model="password"  placeholder="Repeat email name">
+          <input id="password" type="password" v-model="password"  placeholder="Your password">
       </div>
 
 
 <div class="form-group">
-          <input id="password-confirm" type="password" v-model="password_confirmation"  placeholder="Your password">
+          <input id="password-confirm" type="password" v-model="password_confirmation"  placeholder="Repeat password">
       </div>
 
       <div>
@@ -50,12 +50,12 @@
       register: function () {
         let data = {
           name: this.name,
-       //   email: this.email,
-       //   password: this.password,
+          email: this.email,
+          password: this.password,
        //   is_admin: this.is_admin
         }
-        this.$store.dispatch('REGISTER_USER', data)
-       .then(() => this.$router.push('/'))
+        this.$store.dispatch('auth/REGISTER_USER', data)
+       .then(() => this.$router.push('/register'))
        .catch(err => console.log(err))
       }
     }

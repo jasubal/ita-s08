@@ -1,15 +1,12 @@
 import { createStore } from 'vuex'
-import { login } from './login.module';
-import { register } from './register.module';
+import { auth } from './m.auth';
 
 export default createStore({
 
   modules: {
-    login: login,
-    register: register
+    auth: auth,
   },
 
-  // poner variables y colecciones aquí
   state: {
     page: 1,
     totalStarships: '',
@@ -19,7 +16,7 @@ export default createStore({
     starship: {},
     starshipsLoaded: false,
 
-    user: {}
+
 
   },
   mutations: {
@@ -35,7 +32,7 @@ export default createStore({
       LOAD_SHIP:   (state, payload) => (state.starship = payload),
       SHIPLOADED:  (state, payload) => (state.starshipLoaded = payload),
       //
-      SAVE_USER:   (state, payload) => (state.user = payload),
+
   },
   actions: {
    // funciones asíncronas que puede llamar una o más mutaciones
@@ -80,11 +77,7 @@ export default createStore({
       });
     },
 
-    //=>this.$store.dispatch('REGISTER_USER', data)
-    REGISTER_USER:(state, payload) => {
-      console.log("REGISTER_USER"+payload)
-      state.commit('SAVE_USER', payload)
-    }
+
 
   },
   getters: {
