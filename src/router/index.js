@@ -11,14 +11,14 @@ const routes = [
     path: '/login',
     name: 'login',
     component: function () {
-      return import(/* webpackChunkName: "login" */ '../components/Login.vue')
+      return import('../components/Login.vue')
     }
   },
   {
     path: '/register',
     name: 'register',
     component: function () {
-      return import(/* webpackChunkName: "register" */ '../components/Register.vue')
+      return import('../components/Register.vue')
     }
   },
   {
@@ -30,7 +30,14 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "starships" */ '../views/Starships.vue')
     }
-  }
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: function () {
+      return import('../components/Logout.vue')
+    }
+  },
 ]
 
 const router = createRouter({

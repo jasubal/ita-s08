@@ -99,24 +99,23 @@ computed: {
         <li><span>MGLT:  </span>{{  MGLT }}</li>
         <li><span>Manufacturer:  </span>{{ manufacturer  }}</li>
         <li><span>Max Atmosphering Speed:  </span>{{ max_atmosphering_speed  }}</li>
-        <!--
-        <li><span>Pilots: </span>{{ pilots }}</li>
-        <li><span>Films:  </span>{{ films }}</li>
-        -->
     </ul>
+<!-- <Pilots :pilots="pilots" > -->
 </div>
+
 <div v-else>
 <h1>Pease, <br>Select a starship</h1>
 <img src="../assets/ship-razor-crest.png" alt="">
 </div>
-
-
 </div>
-
 </template>
 
+
+
+
 <style>
-#c-starship { background-color: #303030; padding: 20px;
+#c-starship {
+background-color: #303030; padding: 20px;
 min-height: 70vh;
 border-radius: 20px;
  }

@@ -33,7 +33,7 @@
         let password = this.password
         this.$store.dispatch('auth/CHECK_USER', { email, password })
         // this.$store.dispatch('register/REGISTER_USER', data)
-       .then(() => this.$router.push('/starships'))
+       //.then(() => this.$router.push('/starships'))
        .catch(err => console.log(err))
       }
     }

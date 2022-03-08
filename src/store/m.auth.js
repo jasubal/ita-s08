@@ -1,3 +1,6 @@
+import router from '../router'
+
+
 const state = {
     isLogin: false,
     user: {}
@@ -8,20 +11,14 @@ const mutations = {
     SAVE_USER: (state, payload) => {
         state.user = payload
         state.isLogin = true
-        console.log("user name: "+ state.user.name)
+        //console.log("user name: "+ state.user.name)
     },
 
-    /*
-    RESETSTATE (state) {
+    LOGOUT_USER (state) {
         state.isLogin=false;
-        state.token=null;
         state.user=null;
     },
-    LOGINREQUEST(state, user) {
-        state.isLogin=true;
-        state.token=null;
-        state.user=user;
-    },
+  /*
     LOGINSUCCESS(state) {
         state.isLogin=true;
         state.token=null;
@@ -50,7 +47,7 @@ const actions = {
     //=>this.$store.dispatch('register/LOGIN_USER', data)
     CHECK_USER:(state, payload) => {
         if(localStorage.getItem("users") === null){
-            console.log("no hay usuarios")
+            console.log("no hay usuarios, creamos array con un user...")
         }else{
             let users = JSON.parse(localStorage.getItem("users"));
             users.forEach((user) => {
@@ -58,19 +55,25 @@ const actions = {
                     state.commit('SAVE_USER', user)
                     console.log("user logged email: "+ user.email)
                     console.log("user logged password: "+ user.password)
+                    router.push('/starships');
                 }else{
                     console.log("user not found")
+                    router.push('/register');
+
+
                 }
             }
             )};
     },
 
-    LOGOUT_USER:(state, payload) => {
-        state.commit('SAVE_USER', null)
+    LOGOUT:(state) => {
+        state.commit('LOGOUT_USER', null)
     }
 
-
-
+}
+const getters = {
+    isAuthenticated: state => state.isLogin,
+    //name: state => state.user.name
 }
 
 
@@ -80,4 +83,5 @@ export const auth = {
     state,
     mutations,
     actions,
+    getters
 };
