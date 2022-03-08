@@ -77,12 +77,15 @@ a { color: #fff; }
     background: #181818;
     align-content: flex-start;
     padding: 2em 3em 0;
-    margin: 2em 0;
+
 }
 #c-register {
+    margin: 0;
     max-height: 600px;
+
 }
 #c-login {
+    margin: 2em 0;
     max-height: 400px;
 }
 .auth-logo {
