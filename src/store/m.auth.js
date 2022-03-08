@@ -8,7 +8,7 @@ const state = {
 
 const mutations = {
 
-    SAVE_USER: (state, payload) => {
+    LOG_USER: (state, payload) => {
         state.user = payload
         state.isLogin = true
         //console.log("user name: "+ state.user.name)
@@ -34,17 +34,30 @@ const mutations = {
 const actions = {
     //=>this.$store.dispatch('register/REGISTER_USER', data)
     REGISTER_USER:(state, payload) => {
-     state.commit('SAVE_USER', payload)
         if(localStorage.getItem("users") === null){
-        let users = []; users.push(payload);
-        localStorage.setItem("users", JSON.stringify(users))
+            let users = []; users.push(payload);
+            localStorage.setItem("users", JSON.stringify(users))
+            state.commit('LOG_USER', payload)
+            router.push('/starships');
+            console.log("user: "+ payload.name + " registered OK")
         }else{
-        let users = JSON.parse(localStorage.getItem("users")); users.push(payload)
-        localStorage.setItem("users", JSON.stringify(users))
+            let users = JSON.parse(localStorage.getItem("users"));
+            users.forEach((user) => {
+            if(user.email === payload.email){
+                alert("Email already exists");
+                return;
+            }else{
+                users.push(payload);
+                localStorage.setItem("users", JSON.stringify(users))
+                state.commit('LOG_USER', payload)
+                router.push('/starships');
+                console.log("user: "+ payload.name + " registered OK")
+            }
+        });
         }
     },
 
-    //=>this.$store.dispatch('register/LOGIN_USER', data)
+    //=>this.$store.dispatch('register/CHECK_USER', data)
     CHECK_USER:(state, payload) => {
         if(localStorage.getItem("users") === null){
             console.log("no hay usuarios, creamos array con un user...")
@@ -52,12 +65,14 @@ const actions = {
             let users = JSON.parse(localStorage.getItem("users"));
             users.forEach((user) => {
                 if(user.email === payload.email && user.password === payload.password){
-                    state.commit('SAVE_USER', user)
-                    console.log("user logged email: "+ user.email)
-                    console.log("user logged password: "+ user.password)
-                    router.push('/starships');
+                    state.commit('LOG_USER', user)
+                    //console.log("user logged email: "+ user.email)
+                    //console.log("user logged password: "+ user.password)
+                    console.log("user logged")
+                    router.push('/starships')
                 }else{
                     console.log("user not found")
+                    state.commit('LOGOUT_USER', null)
                     router.push('/register');
 
 

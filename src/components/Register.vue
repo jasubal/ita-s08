@@ -48,7 +48,6 @@
           password: this.password,
         }
         this.$store.dispatch('auth/REGISTER_USER', data)
-       .then(() => this.$router.push('/starships'))
        .catch(err => console.log(err))
       }
     }

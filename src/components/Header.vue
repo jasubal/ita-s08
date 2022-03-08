@@ -24,9 +24,10 @@ export default {
     name: 'Header',
     data(){
         return {
-            isAuthenticated: false,
-
         }
+    },
+    watch: {
+
     },
     computed: {
         ...mapGetters({
