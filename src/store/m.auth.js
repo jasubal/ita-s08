@@ -16,18 +16,11 @@ const mutations = {
 
     LOGOUT_USER (state) {
         state.isLogin=false;
-        state.user=null;
+        state.user.name='Guest';
+        state.user.email='';
+        state.user.password='';
     },
-  /*
-    LOGINSUCCESS(state) {
-        state.isLogin=true;
-        state.token=null;
-        state.user=null;
-    },
-    LOGINFAILURE(state) {
-        state.isLogin=false;
-    },
-    */
+
 
 }
 
@@ -60,7 +53,11 @@ const actions = {
     //=>this.$store.dispatch('register/CHECK_USER', data)
     CHECK_USER:(state, payload) => {
         if(localStorage.getItem("users") === null){
-            console.log("no hay usuarios, creamos array con un user...")
+            console.log("empty array...")
+            console.log("so user not found")
+            state.commit('LOGOUT_USER', null)
+            router.push('/register');
+
         }else{
             let users = JSON.parse(localStorage.getItem("users"));
             users.forEach((user) => {
@@ -88,7 +85,8 @@ const actions = {
 }
 const getters = {
     isAuthenticated: state => state.isLogin,
-    //name: state => state.user.name
+    getName: state => state.user.name
+
 }
 
 

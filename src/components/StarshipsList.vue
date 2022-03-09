@@ -86,11 +86,11 @@ computed: {
 #starshipsList { max-width: 1200px; }
 ul { margin-block-start: 0; display: flex; flex-direction: column; max-width: 480px; padding: 0 0 5em; }
 ul li { display: flex; margin: 2px; align-items: center; }
-ul li a, .nau{ background: #484848; padding: 10px 2em; text-align: left; width: 100%; display: flex; flex-direction: column; text-transform: uppercase; transition: all 0.1s  }
+ul li a, .nau{ background: var(--c-grey); padding: 10px 2em; text-align: left; width: 100%; display: flex; flex-direction: column; text-transform: uppercase; transition: all 0.1s  }
 .nau {border-radius: 6px}
 ul li a:hover, .nau:hover { background: #000; transition: all 0.5s}
 .nau {cursor: pointer;}
 .nauNom { font-weight: bold; }
-.nauNom[data-v-4d48a13a] { font-weight: bold; color: #ffeb3b; }
+.nauNom[data-v-4d48a13a] { font-weight: bold; color: var(--c-sws); }
 .nauIdx[data-v-4d48a13a] { font-weight: normal; position: relative; left: -28px; font-size: 12px; height: 0; }
 </style>
