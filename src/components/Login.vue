@@ -1,6 +1,6 @@
 <template>
  <div id="c-login" class="flex one center auth">
-   <form class="login" @submit.prevent="login">
+   <form class="login" @submit.prevent="login" >
      <h1>Sign in</h1>
 <div class="form-group">
      <input required v-model="email" type="email" placeholder="Email"/>
@@ -10,7 +10,7 @@
 </div>
      <button type="submit">Login</button>
           <p>Not registerd?
-           <router-link to="/login">Sign In</router-link>
+           <router-link to="/register">Sign In</router-link>
       </p>
    </form>
  </div>

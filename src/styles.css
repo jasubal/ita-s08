@@ -21,6 +21,8 @@ margin: 0; padding: 0; background: var(--c-b) }
     background: #0d0d0d;
 }
 #c-header #nav {
+    padding: 0;
+    margin: 0;
     align-items: center;
     display: flex;
     justify-content: center;

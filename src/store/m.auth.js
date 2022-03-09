@@ -57,25 +57,18 @@ const actions = {
             console.log("so user not found")
             state.commit('LOGOUT_USER', null)
             router.push('/register');
-
         }else{
             let users = JSON.parse(localStorage.getItem("users"));
-            users.forEach((user) => {
-                if(user.email === payload.email && user.password === payload.password){
-                    state.commit('LOG_USER', user)
-                    //console.log("user logged email: "+ user.email)
-                    //console.log("user logged password: "+ user.password)
-                    console.log("user logged")
-                    router.push('/starships')
-                }else{
-                    console.log("user not found")
-                    state.commit('LOGOUT_USER', null)
-                    router.push('/register');
-
-
-                }
+            if (users.some( obj => obj.email == payload.email && obj.password == payload.password)) {
+                let user = users.find(element => element.email == payload.email && element.password == payload.password);
+                state.commit('LOG_USER', user)
+                router.push('/starships');
+                console.log("user: "+ user.name + " logged OK")
+            }else{
+                alert("Email or password incorrect, are you registerd?");
+                return;
             }
-            )};
+        }
     },
 
     LOGOUT:(state) => {

@@ -99,6 +99,7 @@ computed: {
         <li><span>MGLT:  </span>{{  MGLT }}</li>
         <li><span>Manufacturer:  </span>{{ manufacturer  }}</li>
         <li><span>Max Atmosphering Speed:  </span>{{ max_atmosphering_speed  }}</li>
+        <li><span>Pilots:</span> {{pilots}}  </li>
     </ul>
 <!-- <Pilots :pilots="pilots" > -->
 </div>
@@ -149,8 +150,8 @@ border-radius: 20px;
     max-width: 600px;
     border-radius: 20px;
 }
-#c-starship li { background: #222; margin: 2px; padding: 6px; text-align: left; }
-#c-starship li span{ display: block; }
+#c-starship li { background: #222; margin: 2px; padding: 6px; text-align: left;font-weight: bold; }
+#c-starship li span{color:var(--c-sws); display: block;font-weight: 600; }
 #starship {overflow: hidden;}
 @media (min-width: 56.25em) {
 #c-starship {

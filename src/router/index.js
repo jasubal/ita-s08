@@ -11,10 +11,12 @@ const routes = [
     path: '/starships',
     name: 'starships',
     component: () => import('../views/Starships.vue'),
+    /*
     beforeEnter: (to, from, next) => {
     console.log("beforeEnter" + to.path)
     store.state.auth.isLogin ? next() : next('/login')
     }
+    */
   },
   {
     path: '/login',
