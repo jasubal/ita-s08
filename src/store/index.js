@@ -17,7 +17,6 @@ export default createStore({
     starship: {},
     pilotsApiUrl: [],
     pilots: [],
-
     showcard: false,
 
   },
@@ -33,6 +32,7 @@ export default createStore({
       MUTATE_SHIPS: (state, payload) => { state.starships.push(...payload) },
       //
       SHOWCARD:    (state, payload) => (state.showcard = payload),
+      CLEAR_SHIP: (state) => (state.starship = []),
       LOAD_SHIP:   (state, payload) => ( state.starship = payload ),
       SHIPLOADED:  (state, payload) => (state.starshipLoaded = payload),
       //
@@ -79,6 +79,8 @@ export default createStore({
     // SHIP AND PILOTS
     //=>this.$store.dispatch("GET_SHIP", this.shipID);
     GET_SHIP:(state, payload) => {
+      state.commit('CLEAR_SHIP')
+      state.commit('CLEAR_PILOTS')
       let pilotsUrls = []
       fetch(`https://swapi.py4e.com/api/starships/${payload}`,
       { method: 'GET', headers: {'Accept': 'application/json'},})
@@ -91,7 +93,6 @@ export default createStore({
         /* *** */
       })
       .then(() => {
-        state.commit('CLEAR_PILOTS')
         pilotsUrls.forEach(url => {
           fetch(url,
           { method: 'GET', headers: {'Accept': 'application/json'},})
@@ -103,7 +104,9 @@ export default createStore({
         }
         )
         state.commit('SHIPLOADED', true)
+
       })
+
     },
 
     /*
@@ -152,7 +155,8 @@ export default createStore({
     nextUrl:     (state) => state.next,
     cardShowing: (state) => state.showcard,
     pilotsUrls:  (state) => state.starship.pilotsApiUrl,
-    getPilots:      (state) => state.pilots,
+    getstarship: (state) => state.starship,
+    getPilots:   (state) => state.pilots,
 
   },
 })

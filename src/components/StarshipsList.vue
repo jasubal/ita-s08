@@ -13,16 +13,31 @@ export default {
             starship: {},
      }
     },
+mounted() {
+        //console.log(this.$route.params)
+       //this.shipID = this.$route.params.id
+        //console.log(this.shipID)
+  },
 methods: {
-    getStarshipData(idx,url) {
-    //console.log(this.starships[idx]);
-    this.shipID =  url.split("starships/").pop().slice(0, -1);
-    this.$store.dispatch("GET_SHIP", this.shipID)
-    // .then(() => this.$store.dispatch("CREATE_PILOTS_OBJECTS", this.pilotsApiUrl))
-
-    this.$store.dispatch("SHOWCARD", true);
-    //this.showcard = true;
+    getStarshipId(url){
+        let id = url.split("starships/").pop().slice(0, -1);
+        return id;
+    },
+getStarshipDataFromUrl() {
+  },
+getStarshipData(idx,url) {
+    //console.log(url);
+    //console.log(this.shipID);
     this.starship = this.starships[idx];
+    //console.log(this.starship)
+
+    this.starship = this.starships[idx];
+    this.shipID = this.getStarshipId(url)
+    this.$store.dispatch("GET_SHIP", this.shipID)
+    //this.starship = this.getstarship;
+    //console.log(this.starship);
+    this.$store.dispatch("SHOWCARD", true);
+
     },
     addMoreShips() {
     this.$store.dispatch("ADD_MORE_SHIPS",this.nextUrl)
@@ -34,7 +49,7 @@ methods: {
     addRouter(){
 // update router
 // console.log(this.$route.query)
-this.$router.push({ path: '/starships', query: { page: this.page } })
+ //this.$router.push({ path: '/starships', query: { page: this.page } })
     }
 },
 created() {
@@ -47,7 +62,7 @@ watch: {
     }
 },
 computed: {
-    ...mapState(["starships","starshipsLoaded", "starship","totalStarships","next","page","pilotsApiUrl"]),
+    ...mapState(["starships","starshipsLoaded","totalStarships","next","page","pilotsApiUrl"]),
     ...mapGetters(["countShips","currentPage","nextUrl"]),
 },
 }
@@ -62,14 +77,14 @@ computed: {
 <li v-for="(starship, idx) in starships" v-bind:key="idx">
     <div class="nau" @click="getStarshipData(idx,starship.url)">
    <!--
-    <router-link :to="{ path: '/careers/job-1', hash: '#apply' }">test</router-link>
+    <router-link :to="{ name: 'starships', params: {name: starship.name }}">more..</router-link>
     <a :href="'#/starships/' + clearWhitespace(starship.name)">
        -->
-   <router-link :to="{ path: '/starships', hash: '#starship' }" >
+<router-link :to="{ name: 'starship', params: {id: getStarshipId(starship.url) } }">
     <span class="nauIdx">   ({{ idx }}) </span>
     <span class="nauNom">   {{ starship.name }}</span>
     <span class="nauModel"> {{ starship.model }}</span>
-    </router-link>
+</router-link>
 
 <!-- </a> -->
     </div>
@@ -81,7 +96,9 @@ computed: {
 </ul>
 </div>
 <div id="pre-c-starchipcards">
+
 <StarshipCard  :shipID="shipID" :starship="starship"  />
+
 </div>
 
 

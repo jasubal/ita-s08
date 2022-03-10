@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import store from '../store'
+// import store from '../store'
 
 const routes = [
   {
@@ -11,11 +11,31 @@ const routes = [
     path: '/starships',
     name: 'starships',
     component: () => import('../views/Starships.vue'),
+    /*
     beforeEnter: (to, from, next) => {
     console.log("beforeEnter" + to.path)
     store.state.auth.isLogin ? next() : next('/login')
     }
+    */
   },
+  {
+    path: '/starship/:id',
+    name: 'starship',
+    component: () => import('../views/Starships.vue'),
+    /*
+    beforeEnter: (to, from, next) => {
+    console.log("beforeEnter" + to.path)
+    store.state.auth.isLogin ? next() : next('/login')
+    }
+    */
+  },
+/*
+  {
+    path: '/StarshipCard/:name',
+    name: 'starshipscard',
+    component: () => import('../components/StarshipCard.vue')
+  },
+*/
   {
     path: '/login',
     name: 'login',

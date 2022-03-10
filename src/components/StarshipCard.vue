@@ -9,7 +9,7 @@ export default {
     components: { Pilots },
     data() {
         return {
-            starshipCard: {},
+       starshipCard: {},
             starshipUrl: "",
             starshipId: "",
             placeholderUrl: "../src/assets/ship-not.jpg",
@@ -33,22 +33,29 @@ export default {
             films: [],
             }
 },
+
 mounted() {
-this.renderStarship()
+
 },
 watch: {
     shipID: function() {
     console.log(this.shipID)
-    //this.$store.dispatch("GET_SHIP", this.shipID);
+    console.log(this.starshipCard)
+    this.starshipCard = this.starship
     this.renderStarship();
+    //this.$store.dispatch("GET_SHIP", this.shipID);
+    //.then(() => console.log(this.getstarship))
+    //this.showcart ? this.renderStarship() : null
     },
     },
 methods: {
     renderStarship() {
-        this.starshipUrl = this.starship.url;
+        const s = this.starshipCard;
+        //console.log(s);
+        this.starshipUrl = s.url;
         this.starshipId = this.shipID;
         this.imgUrl = "https://starwars-visualguide.com/assets/img/starships/" + this.starshipId + ".jpg";
-        let s = this.starship;
+
         this.name = s.name;
         this.model = s.model;
         this.s_class = s.starship_class;
@@ -74,7 +81,8 @@ methods: {
 },
 computed: {
      ...mapState(["showcard"]),
-    ...mapGetters(["getPilots"]),
+     ...mapGetters(["getstarship","getPilots"]),
+
 
 },
 
