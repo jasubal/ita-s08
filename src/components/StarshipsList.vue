@@ -34,7 +34,7 @@ methods: {
     addRouter(){
 // update router
 // console.log(this.$route.query)
-// this.$router.push({ path: '/starships', query: { page: this.page } })
+this.$router.push({ path: '/starships', query: { page: this.page } })
     }
 },
 created() {
@@ -49,18 +49,6 @@ watch: {
 computed: {
     ...mapState(["starships","starshipsLoaded", "starship","totalStarships","next","page","pilotsApiUrl"]),
     ...mapGetters(["countShips","currentPage","nextUrl"]),
-/*
-    page: 1,
-    totalStarships: '',
-    next: '',
-    previous: '',
-    starships:[],
-    starship: {},
-    pilotsApiUrl: [],
-    pilots: [],
-    starshipsLoaded: false,
-    showcard: false,*/
-
 },
 }
 
@@ -73,10 +61,16 @@ computed: {
 <ul>
 <li v-for="(starship, idx) in starships" v-bind:key="idx">
     <div class="nau" @click="getStarshipData(idx,starship.url)">
-   <!--  <a v-bind:href="'#/starships/' + clearWhitespace(starship.name)"> -->
+   <!--
+    <router-link :to="{ path: '/careers/job-1', hash: '#apply' }">test</router-link>
+    <a :href="'#/starships/' + clearWhitespace(starship.name)">
+       -->
+   <router-link :to="{ path: '/starships', hash: '#starship' }" >
     <span class="nauIdx">   ({{ idx }}) </span>
     <span class="nauNom">   {{ starship.name }}</span>
     <span class="nauModel"> {{ starship.model }}</span>
+    </router-link>
+
 <!-- </a> -->
     </div>
 
@@ -101,14 +95,14 @@ computed: {
 }
 ul { margin-block-start: 0; display: flex; flex-direction: column; padding: 0 0 5em; }
 ul li { display: flex; margin: 2px; align-items: center; }
-ul li a, .nau{ background: var(--c-grey); padding: 10px 2em; text-align: left; width: 100%; display: flex; flex-direction: column; text-transform: uppercase; transition: all 0.1s  }
-.nau {border-radius: 6px}
-ul li a:hover, .nau:hover { background: #000; transition: all 0.5s}
-.nau {cursor: pointer;}
-.nauNom { font-weight: bold; }
-.nauNom { font-weight: bold; color: var(--c-sws); }
+.nau{cursor: pointer; background: var(--c-grey); padding: 10px 2em; text-align: left; width: 100%; display: flex; flex-direction: column; text-transform: uppercase; transition: all 0.1s; border-radius: 6px }
+.nau:hover { background: #000; transition: all 0.5s}
+.nauNom { font-weight: bold; color: var(--c-sws);display: block; }
 .nauIdx { font-weight: normal; position: relative; left: -28px; font-size: 12px; height: 0; }
-
+#starshipsList a {
+    display: flex;
+    flex-direction: column;
+}
 @media (min-width: 70em) {
 #pre-ul-starships {
     width: 35vw;

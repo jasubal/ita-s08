@@ -1,5 +1,6 @@
 :root {
 --c-sws:#ffeb3b; /* var(--c-sws) */
+--c-w:#ffffff; /* var(--c-w) */
 --c-b: #000000; /* var(--c-b) */
 --c-grey:#313131; /* var(--c-grey) */
 --c-grey-light:#acacac; /* var(--c-grey-light) */
@@ -12,7 +13,6 @@ margin: 0; padding: 0; background: var(--c-b) }
 #app { font-family: Avenir, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-align: center; color: #2c3e50; }
  #v-views { min-height: 80vh; }
 #page { background: #0d0d0d; color: #CCC; height: 100%; margin: 0; padding: 0; width: 100%; }
-
 #link-app-logo { max-width: 20em; }
 #c-header {
     position: sticky;

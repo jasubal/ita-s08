@@ -76,6 +76,7 @@ export default createStore({
 
     },
 
+    // SHIP AND PILOTS
     //=>this.$store.dispatch("GET_SHIP", this.shipID);
     GET_SHIP:(state, payload) => {
       let pilotsUrls = []
@@ -86,7 +87,7 @@ export default createStore({
         state.commit('LOAD_SHIP', data)
         state.commit('LOAD_PILOTS_URL', data.pilots)
         pilotsUrls = data.pilots;
-        console.log(data.pilots)
+        //console.log(data.pilots)
         /* *** */
       })
       .then(() => {
@@ -97,7 +98,7 @@ export default createStore({
           .then((res) => { return res.json(); })
           .then((data) => {
             state.commit('PUSH_PILOT', data)
-            console.log(data)
+          //console.log(data)
           })
         }
         )
@@ -151,6 +152,7 @@ export default createStore({
     nextUrl:     (state) => state.next,
     cardShowing: (state) => state.showcard,
     pilotsUrls:  (state) => state.starship.pilotsApiUrl,
+    getPilots:      (state) => state.pilots,
 
   },
 })

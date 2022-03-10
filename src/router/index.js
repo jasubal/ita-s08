@@ -11,12 +11,10 @@ const routes = [
     path: '/starships',
     name: 'starships',
     component: () => import('../views/Starships.vue'),
-    /*
     beforeEnter: (to, from, next) => {
     console.log("beforeEnter" + to.path)
     store.state.auth.isLogin ? next() : next('/login')
     }
-    */
   },
   {
     path: '/login',
@@ -44,8 +42,20 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash,
+        behavior: 'smooth'
+      };
+    }
+    return { x: 0, y: 0 };  // Go to the top of the page if no hash
+  },
+
 })
+
+
 
 router.beforeEach(() => {
   /*
