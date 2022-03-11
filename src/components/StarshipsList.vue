@@ -11,32 +11,10 @@ export default {
         return {
             shipID:'',
             starship: {},
-            paramId: '',
 
      }
     },
-mounted() {
-    //this.paramId = this.$route.params.id
-    //this.$route.params.id !== undefined ?
-    //this.getStarshipDataFromUrl() : null
-    //console.log(this.$route.params)
-    //this.shipID = this.$route.params.id
-    //console.log(this.$route.params.id)
-    // this.getStarshipDataFromUrl()
-  },
 methods: {
- /*
-getStarshipDataFromUrl() {
-//console.log("getStarshipDataFromUrl")
-//let id =  this.$route.params.id;
-//this.shipID = id;
-//this.starship = this.starships[idx];
-//this.$store.dispatch("GET_SHIP", this.shipID)
-//console.log(this.$store.getters.getStarship)
-//this.$store.dispatch("SHOWCARD", true);
-//this.starship = this.getStarship;
-},
-*/
 getStarshipId(url){
     let id = url.split("starships/").pop().slice(0, -1);
     return id;
@@ -52,20 +30,11 @@ getStarshipData(idx,url) {
     //this.starship = this.getstarship;
     //console.log(this.starship);
     this.$store.dispatch("SHOWCARD", true);
-
     },
     addMoreShips() {
     this.$store.dispatch("ADD_MORE_SHIPS",this.nextUrl)
     },
 
-    clearWhitespace(str) {
-        return str.replace(/\s/g, '-')
-    },
-    addRouter(){
-// update router
-// console.log(this.$route.query)
- //this.$router.push({ path: '/starships', query: { page: this.page } })
-    }
 },
 created() {
 this.$store.dispatch("GET_SHIPS",1)
@@ -73,7 +42,7 @@ this.$store.dispatch("GET_SHIPS",1)
 
 watch: {
     nextUrl : function(){
-         this.addRouter();
+         //this.addRouter();
     },
     /*
     paramId : function(){
@@ -98,13 +67,14 @@ computed: {
     <div class="nau" @click="getStarshipData(idx,starship.url)">
    <!--
     <router-link :to="{ name: 'starships', params: {name: starship.name }}">more..</router-link>
+        <router-link :to="{ name: 'starship', params: {id: getStarshipId(starship.url), idx:idx  } }">
     <router-link :to="{ name: 'starship', params: {id: getStarshipId(starship.url) } }">
                <router-link to="/starships" :id="getStarshipId(starship.url)">
     <router-link to="/find" :folder="folder" :file="file">
     <a :href="'#/starships/' + clearWhitespace(starship.name)">
        -->
 
-    <router-link :to="{ name: 'starship', params: {id: getStarshipId(starship.url), idx:idx  } }">
+    <router-link :to="{ name: 'starship', params: {id: getStarshipId(starship.url)  } }">
     <span class="nauIdx">   ({{ idx }}) </span>
     <span class="nauNom">   {{ starship.name }}</span>
     <span class="nauModel"> {{ starship.model }}</span>

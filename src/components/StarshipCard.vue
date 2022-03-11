@@ -49,25 +49,31 @@ watch: {
     //this.$store.dispatch("GET_SHIP", this.shipID);
     //.then(() => console.log(this.getstarship))
     //this.showcart ? this.renderStarship() : null
+    this.addRouterHash()
+
     },
     getstarship: function() {
     console.log(this.getstarship)
     this.starshipCard = this.getstarship
     //this.starshipId = this.$route.params.id
     this.renderStarship(this.$route.params.id);
-    }
+    },
+
 },
 methods: {
 
 getStarshipDataFromUrlToCard() {
     console.log("getStarshipDataFromUrlToCard")
     let id =  this.$route.params.id;
-    //console.log(id)
+    /*
+    let name = this.$route.params.name;
+    console.log(name)
+    */
     this.$store.dispatch("GET_SHIP", id)
     this.$store.dispatch("SHOWCARD", true);
+
     //this.shipID = id;
     //
-
 },
 renderStarship(id) {
         const s = this.starshipCard;
@@ -96,13 +102,22 @@ renderStarship(id) {
         // renderStarship
     },
     // evento que asigna ruta a etiqueta img de html
-    setAltImg(event) {  event.target.src = this.placeholderUrl; },
+    setAltImg(event) {  event.target.src = this.placeholderUrl;
+    },
 
+    addRouterHash(){
+   let cleanName = this.name
+    cleanName = '#'+cleanName.replace(/ /g, "-");
+    this.$router.push({ hash: cleanName })
+    }
 },
 computed: {
      ...mapState(["showcard"]),
      ...mapGetters(["getstarship","getPilots"]),
 
+  clearWhitespace(str) {
+        return str.replace(/\s/g, '-')
+    }
 
 },
 
