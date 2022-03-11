@@ -7,6 +7,7 @@ const routes = [
     name: 'home',
     component: () => import('../views/Home.vue')
   },
+
   {
     path: '/starships',
     name: 'starships',
@@ -15,16 +16,12 @@ const routes = [
     console.log("beforeEnter" + to.path)
     store.state.auth.isLogin ? next() : next('/login')
     }
-
   },
   {
     path: '/starship/:id',
     name: 'starship',
     component: () => import('../views/Starships.vue'),
-    beforeEnter: (to, from, next) => {
-      console.log("beforeEnter" + to.path)
-      store.state.auth.isLogin ? next() : next('/login')
-      }
+
   },
 /*
   {
