@@ -35,6 +35,9 @@ export default {
 },
 
 mounted() {
+    //this.paramId = this.$route.params.id
+    this.$route.params.id !== undefined ?
+    this.getStarshipDataFromUrlToCard() : null
 
 },
 watch: {
@@ -42,19 +45,36 @@ watch: {
     console.log(this.shipID)
     console.log(this.starshipCard)
     this.starshipCard = this.starship
-    this.renderStarship();
+    this.renderStarship(this.shipID);
     //this.$store.dispatch("GET_SHIP", this.shipID);
     //.then(() => console.log(this.getstarship))
     //this.showcart ? this.renderStarship() : null
     },
-    },
+    getstarship: function() {
+    console.log(this.getstarship)
+    this.starshipCard = this.getstarship
+    //this.starshipId = this.$route.params.id
+    this.renderStarship(this.$route.params.id);
+    }
+},
 methods: {
-    renderStarship() {
+
+getStarshipDataFromUrlToCard() {
+    console.log("getStarshipDataFromUrlToCard")
+    let id =  this.$route.params.id;
+    //console.log(id)
+    this.$store.dispatch("GET_SHIP", id)
+    this.$store.dispatch("SHOWCARD", true);
+    //this.shipID = id;
+    //
+
+},
+renderStarship(id) {
         const s = this.starshipCard;
         //console.log(s);
         this.starshipUrl = s.url;
-        this.starshipId = this.shipID;
-        this.imgUrl = "https://starwars-visualguide.com/assets/img/starships/" + this.starshipId + ".jpg";
+        //this.starshipId = this.shipID;
+        this.imgUrl = "https://starwars-visualguide.com/assets/img/starships/" + id + ".jpg";
 
         this.name = s.name;
         this.model = s.model;
