@@ -38,13 +38,13 @@ const actions = {
             users.forEach((user) => {
             if(user.email === payload.email){
                 alert("Email already exists");
-                return;
+                router.push('/login');
             }else{
                 users.push(payload);
                 localStorage.setItem("users", JSON.stringify(users))
                 state.commit('LOG_USER', payload)
                 router.push('/starships');
-                console.log("user: "+ payload.name + " registered OK")
+                console.log("user: "+ payload.name + " logged OK")
             }
         });
         }
