@@ -16,7 +16,6 @@ export default {
         }
     },
     created: function () {
-
        setTimeout(() => { this.logout() }, 2000);
 
     }

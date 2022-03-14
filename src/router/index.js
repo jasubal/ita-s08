@@ -1,60 +1,75 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-//import { mapGetters } from "vuex";
 import store from '../store'
 
-
-
 const routes = [
-
-
-
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: () => import('../views/Home.vue')
   },
+
+  {
+    path: '/starships',
+    name: 'starships',
+    component: () => import('../views/Starships.vue'),
+    beforeEnter: (to, from, next) => {
+    console.log("beforeEnter" + to.path)
+    store.state.auth.isLogin ? next() : next('/login')
+    }
+  },
+  {
+    path: '/starship/:id',
+    name: 'starship',
+    component: () => import('../views/Starships.vue'),
+
+  },
+/*
+  {
+    path: '/StarshipCard/:name',
+    name: 'starshipscard',
+    component: () => import('../components/StarshipCard.vue')
+  },
+*/
   {
     path: '/login',
     name: 'login',
-    component: function () {
-      return import('../components/Login.vue')
-    }
+    component: () => import('../components/Login.vue')
+
   },
   {
     path: '/register',
     name: 'register',
-    component: function () {
-      return import('../components/Register.vue')
-    }
-  },
-  {
-    path: '/starships',
-    name: 'starships',
-    //beforeEnter : guardMyroute(),
-    // route level code-splitting
-    // this generates a separate chunk (starships.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "starships" */ '../views/Starships.vue')
-    }
+    component: () => import('../components/Register.vue')
   },
   {
     path: '/logout',
     name: 'logout',
-    component: function () {
-      return import('../components/Logout.vue')
-    }
+    component: () => import('../components/Logout.vue')
   },
-
-
-
+  // catchall 404
+  {
+    path: '/:catchall(.*)',
+    name: 'notfound',
+    component: () => import('../views/NotFound.vue')
+  }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash,
+        behavior: 'smooth'
+      };
+    }
+    return { x: 0, y: 0 };  // Go to the top of the page if no hash
+  },
+
 })
+
+
 
 router.beforeEach(() => {
   /*

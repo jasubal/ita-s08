@@ -4,6 +4,7 @@
     <router-link id="link-app-logo" to="/"> <img id="app-logo"  alt="Vue logo" src="../assets/logo-starwars.png" /></router-link>
     </div>
     <div v-if=isAuthenticated id="user-btns">
+       <span id="welcome">Hello, {{name}}</span>
   <router-link to="/logout">LOG OUT</router-link>
     </div>
     <div v-else id="user-btns">
@@ -24,13 +25,25 @@ export default {
     name: 'Header',
     data(){
         return {
+            name : "",
         }
     },
     watch: {
-
+getName : function(){
+    this.getName !== "" ? this.name = this.getName : this.name = "Guest";
+    },
     },
     computed: {
-        ...mapGetters({ isAuthenticated: 'auth/isAuthenticated' })
+        ...mapGetters({
+            isAuthenticated: 'auth/isAuthenticated',
+            getName: 'auth/getName',
+        })
     },
 }
 </script>
+<style>
+#welcome {
+    color: var(--c-sws);
+    padding: 0 1em;
+}
+</style>
