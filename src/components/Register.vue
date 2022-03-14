@@ -10,12 +10,12 @@
 
 
 <div class="form-group">
-          <input id="email" type="email" v-model="email"  placeholder="Your email">
+          <input id="email" type="email" v-model="email" required  placeholder="Your email">
       </div>
 
 
 <div class="form-group">
-          <input id="password" type="password" v-model="password"  placeholder="Your password">
+          <input id="password" type="password" v-model="password" required  placeholder="Your password">
 
       </div>
 
@@ -48,7 +48,6 @@
           password: this.password,
         }
         this.$store.dispatch('auth/REGISTER_USER', data)
-       .then(() => this.$router.push('/starships'))
        .catch(err => console.log(err))
       }
     }
